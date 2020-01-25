@@ -1,23 +1,23 @@
-class Bicycle
+# class Bicycle
  
-  attr_reader :tire
+#   attr_reader :tire
  
-    def initialize(tire, gears, style)
-      @tire = tire
-      @gears = gears
-      @style = style
-    end
+#     def initialize(tire, gears, style)
+#       @tire = tire
+#       @gears = gears
+#       @style = style
+#     end
  
-    def tire_size
-      self.tire
-    end
+#     def tire_size
+#       self.tire
+#     end
  
-    def self.gears
-      @gears
-    end
+#     def self.gears
+#       @gears
+#     end
  
-end
+# end
  
-mongoose = Bicycle.new(4, 10, "BMX")
+# mongoose = Bicycle.new(4, 10, "BMX")
 
-puts Bicycle.gears
+# puts Bicycle.gears
