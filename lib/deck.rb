@@ -1,0 +1,49 @@
+class Deck
+    attr_accessor :cards
+
+    def initialize
+        Card.fulldeck.each { |card| card.location = self }
+    end
+
+    def cards
+        Card.fulldeck.select { |card| card.location == self }
+    end
+
+    def left?
+        self.cards.size
+    end
+
+    def empty?
+        self.left? == 0
+    end
+
+    def reshuffle
+        # Card.fulldeck.each { |card| card.location == self }
+        self.cards.shuffle!
+    end
+
+
+    def deal(num,hand1,hand2)
+        cards = self.cards.shuffle
+        cards[0..num-1].each { |card| card.location = hand1 }
+        cards[num..num*2-1].each { |card| card.location = hand2 }
+    end
+
+    def deal_unique(num,hand)
+        card_pile = self.cards.shuffle
+        i = 0
+        in_hand = hand.choices
+        # puts "in_hand before loop: #{in_hand}"
+        while in_hand.size < num
+            # puts "card_pile[#{i}]: #{card_pile[i]}"
+            unless in_hand.include? card_pile[i].name
+                card_pile[i].location = hand
+            end
+            i += 1
+            in_hand = hand.choices
+        end
+        hand
+    end
+
+
+end
