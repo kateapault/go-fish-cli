@@ -10,7 +10,7 @@ def small_card(card)
     "
     end
     
-def medium_card(card)
+def big_card(card)
     n1,n2 = get_info(card)
     s = card.suit
     "

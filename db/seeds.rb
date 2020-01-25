@@ -20,7 +20,9 @@ ranks = {
 
 ranks.each do |r,v|
     suits.each do |s|
-        Card.create(rank:r, suit:s, location:'deck')
+        card = Card.create(rank:r, suit:s, location:'deck')
+        card.pic = small_card(card)
+        card.save
     end
 end
 
