@@ -1,7 +1,10 @@
 class Deck
 
     def initialize
-        Card.all.each { |card| card.location = "deck" }
+        Card.all.each do |card| 
+            card.location = "deck" 
+            card.save
+        end
     end
 
     def cards
@@ -17,31 +20,37 @@ class Deck
     end
 
     def reshuffle
-        Card.all.each { |card| card.location = "deck" }
+        Card.all.each do |card| 
+            card.location = "deck"
+            card.save 
+        end
         self.cards.shuffle!
     end
 
     def deal(num,hand1,hand2)
         cards = self.cards.shuffle
-        cards[0..num-1].each { |card| card.location = hand1 }
-        cards[num..num*2-1].each { |card| card.location = hand2 }
-    end
-
-    def deal_unique(num,hand)
-        card_pile = self.cards.shuffle
-        i = 0
-        in_hand = hand.choices
-        # puts "in_hand before loop: #{in_hand}"
-        while in_hand.size < num
-            # puts "card_pile[#{i}]: #{card_pile[i]}"
-            unless in_hand.include? card_pile[i].name
-                card_pile[i].location = hand
-            end
-            i += 1
-            in_hand = hand.choices
+        cards[0..num-1].each do |card| 
+            card.location = hand1.owner 
+            card.save
         end
-        hand
+        cards[num..num*2-1].each do |card| 
+            card.location = hand2.owner 
+            card.save
+        end
     end
 
-
+    # def deal_unique(num,hand)
+    #     deck_cards = self.cards
+    #     in_hand = []
+    #     n = 0
+    #     while in_hand.size < num && n < 52
+    #         card = deck_cards[n]
+    #         if in_hand.include? card.rank === false
+    #             card.location = hand.owner
+    #             card.save
+    #             in_hand << card.rank
+    #         end
+    #         n += 1
+    #     end
+    # end
 end

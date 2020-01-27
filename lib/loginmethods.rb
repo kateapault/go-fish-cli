@@ -69,7 +69,7 @@ def signup
     until pw_match
         pw = prompt.mask("Enter password: ")
         pw2 = prompt.mask("Confirm password: ")
-        pw == pw2 ? (pw_match = true) : puts "Error: passwords do not match. Please try again."
+        pw == pw2 ? (pw_match = true) : (puts "Error: passwords do not match. Please try again.")
     end
     new_user = User.create(name:username,password:pw)
 end

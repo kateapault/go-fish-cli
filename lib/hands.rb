@@ -9,23 +9,22 @@ class Hand
     end
 
     def display
-        puts "#{self.owner}'s Hand: "
         self.cards.each do |card|
             print "[#{card.rank} #{card.suit}] "
         end
+        return nil
     end
 
-    def ask_options
+    def list_ranks
         self.cards.map { |card| card.rank }
+    end
+
+    def draw_card(num=1)
+        num.times do
+            drawn_card = Card.find { |card| card.location == 'deck' }
+            drawn_card.location = self.owner
+            drawn_card.save
+        end
     end
     
 end
-
-#     # def draw_card(num=1)
-#     #     num.times do
-#     #         drawn_card = Card.find { |card| card.location == 'deck' }
-#     #         drawn_card.move_to == self
-#     #     end
-#     # end
-
-# end

@@ -1,5 +1,13 @@
 require_relative './config/environment'
 
+puts "yay :)"
+
+h1, h2, d  = start_game("Player")
+# puts h1.display
+# puts h2.display
+
+human_guess(h1,h2)
+# binding.pry
 # start menu - login/signup/about
     # eventually do reset password if wrong?
 
