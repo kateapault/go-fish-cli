@@ -1,25 +1,25 @@
-# class Hand
-#     attr_reader :owner
-#     def initialize(owner)
-#         #starts with owner assigned
-#         @owner = owner
-#     end
+class Hand
+    attr_reader :owner
+    def initialize(owner)
+        @owner = owner
+    end
 
-#     def cards
-#         Card.fulldeck.select { |card| card.location == self }
-#     end
+    def cards
+        Card.all.select { |card| card.location == @owner }
+    end
 
-#     def display
-#         self.cards.each do |card|
-#             print "[#{card.fullname}]"
-#         end
-#         puts ''
-#     end
+    def display
+        puts "#{self.owner}'s Hand: "
+        self.cards.each do |card|
+            print "[#{card.rank} #{card.suit}] "
+        end
+    end
 
-#     # for purposes of making pairs
-#     def choices
-#         self.cards.map { |card| card.name }
-#     end
+    def ask_options
+        self.cards.map { |card| card.rank }
+    end
+    
+end
 
 #     # def draw_card(num=1)
 #     #     num.times do
